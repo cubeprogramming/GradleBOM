@@ -1,16 +1,17 @@
 plugins {
     java
-    kotlin("jvm") version "1.3.61"
+    kotlin("jvm")
+    id("io.spring.dependency-management")
 }
 
 group = "com.cubeprogramming"
 version = "1.0-SNAPSHOT"
 
-repositories {
+/*repositories {
 //    mavenLocal()
     mavenCentral()
     maven(url = uri("http://localhost:8081/repository/maven-snapshots/"))
-}
+}*/
 
 dependencies {
     //api(platform(project("JavaPlatformProject")))

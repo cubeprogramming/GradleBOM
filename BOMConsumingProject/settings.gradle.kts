@@ -1,16 +1,27 @@
 //rootProject.name = "BOMConsumingProject"
-
 pluginManagement {
-    val fis = java.io.FileInputStream("custom.gradle.properties")
+    //Defining access to remote properties file
     val prop = java.util.Properties()
-    prop.load(fis)
+    val propertyResource = java.net.URL("https://raw.githubusercontent.com/cubeprogramming/GradleBOM/master/MavenBOMPublisher/gradle.properties")
+    prop.load(java.io.InputStreamReader(propertyResource.openStream()))
     println("Value is =" + prop.getProperty("kotlinPluginVersion"))
+
     val kotlinPluginVersion: String by settings
     plugins {
-//        kotlin("jvm") version "$kotlinPluginVersion"
         kotlin("jvm") version prop.getProperty("kotlinPluginVersion")
+        id("io.spring.dependency-management") version "1.0.9.RELEASE"
     }
 }
+
+
+gradle.allprojects{
+    repositories {
+        //    mavenLocal()
+        mavenCentral()
+        maven(url = uri("http://localhost:8081/repository/maven-snapshots/"))
+    }
+}
+
 
 
 
