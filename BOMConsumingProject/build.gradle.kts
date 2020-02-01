@@ -7,11 +7,6 @@ plugins {
 group = "com.cubeprogramming"
 version = "1.0-SNAPSHOT"
 
-/*repositories {
-//    mavenLocal()
-    mavenCentral()
-    maven(url = uri("http://localhost:8081/repository/maven-snapshots/"))
-}*/
 
 dependencies {
     //api(platform(project("JavaPlatformProject")))
@@ -22,9 +17,9 @@ dependencies {
 
 
 
-configure<JavaPluginConvention> {
+/*configure<JavaPluginConvention> {
     sourceCompatibility = JavaVersion.VERSION_1_8
-}
+}*/
 tasks {
     compileKotlin {
         kotlinOptions.jvmTarget = "1.8"
