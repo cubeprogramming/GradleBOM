@@ -17,8 +17,8 @@ pluginManagement {
 
     plugins {
         java
-//        kotlin("jvm") version prop.getProperty("kotlinPluginVersion")
-        id("org.jetbrains.kotlin.jvm") version prop.getProperty("kotlinPluginVersion")
+        kotlin("jvm") version prop.getProperty("kotlinPluginVersion")
+//        id("org.jetbrains.kotlin.jvm") version prop.getProperty("kotlinPluginVersion")
         pluginsProp.forEach{
             (k, v) -> id(k.toString()) version v.toString()
         }
@@ -27,10 +27,7 @@ pluginManagement {
 
 
 gradle.allprojects{
-    apply{
-       plugin("java")
-        plugin("org.jetbrains.kotlin.jvm")
-    }
+    apply(plugin = "java")
 
     repositories {
         //Define repository list loader
@@ -46,15 +43,6 @@ gradle.allprojects{
     configure<JavaPluginConvention> {
         sourceCompatibility = JavaVersion.VERSION_1_8
     }
-
-    /*tasks {
-        compileKotlin {
-            kotlinOptions.jvmTarget = "1.8"
-        }
-        compileTestKotlin {
-            kotlinOptions.jvmTarget = "1.8"
-        }
-    }*/
 }
 
 

@@ -1,5 +1,5 @@
 plugins {
-    java
+//    java
     kotlin("jvm")
     id("io.spring.dependency-management")
 }
