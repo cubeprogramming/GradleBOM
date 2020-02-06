@@ -10,7 +10,7 @@ version = "1.0-SNAPSHOT"
 
 dependencies {
     //api(platform(project("JavaPlatformProject")))
-    implementation(platform("com.cubeprogramming:JavaPlatformProject:1.0-SNAPSHOT"))
+    implementation(platform("com.cubeprogramming:MavenBOMPublisher:1.0-SNAPSHOT"))
     implementation(kotlin("stdlib-jdk8"))
     testImplementation("junit", "junit", "4.12")
 }

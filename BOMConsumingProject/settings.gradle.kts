@@ -5,12 +5,12 @@
 
 //rootProject.name = "BOMConsumingProject"
 pluginManagement {
-    //Defining access to remote properties file
+    //Defining access to remote gradle.properties file that resides on GIT server
     val prop = java.util.Properties()
     val propertyResource = java.net.URL("https://raw.githubusercontent.com/cubeprogramming/GradleBOM/master/MavenBOMPublisher/gradle.properties")
     prop.load(java.io.InputStreamReader(propertyResource.openStream()))
 
-    //Defining access to plugins.propertier
+    //Defining access to plugins.properties file that resides on GIT server
     val pluginsProp = java.util.Properties()
     val pluginsPropResource = java.net.URL("https://raw.githubusercontent.com/cubeprogramming/GradleBOM/master/MavenBOMPublisher/plugins.properties")
     pluginsProp.load(java.io.InputStreamReader(pluginsPropResource.openStream()))
@@ -30,7 +30,7 @@ gradle.allprojects{
     apply(plugin = "java")
 
     repositories {
-        //Define repository list loader
+        //Defining access to repostoryList file that resides on GIT server
         val repositoryListRes = java.net.URL("https://raw.githubusercontent.com/cubeprogramming/GradleBOM/master/MavenBOMPublisher/repositoryList")
         val repositoryLines = java.io.BufferedReader(java.io.InputStreamReader(repositoryListRes.openStream()))
 
