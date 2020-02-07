@@ -4,11 +4,11 @@ This example explains how to build Maven like "[Bill Of Material](Creating Maven
 
 Reason to create Maven like BOM is to have centralised place where we can manage all plugin and dependency versions as well as create some common configuration that all of the project importing this BOM, can share.
 
-Unlike Mavne where build script is composed as a set of declarative statements, Gradle build script is code. Gradle syntax is quit strict when it comes to ordering of various elements in the script. One such example is a `plugins {}` section that has to be the first statement in each build script. This is quite logical as Gradle interpreter does not know nothing on its own unless we tell it what to do. So anything Gralde can do is by means of various plugins providing us with various built-in tasks. Some tasks are independent, some are dependent on other tasks. Some tasks can be specialised and some extended. One problem that this creates is that all plugins and all plugin versions have to be specified at the beginning of each `gradle.build` or `gradle.build.kts` file.
+Unlike Maven where build script is composed as a set of declarative statements, Gradle build script is code. Gradle syntax is quit strict when it comes to ordering of various elements in the script. One such example is a `plugins {}` section that has to be the first statement in each build script. This is quite logical as Gradle interpreter does not know nothing on its own unless we tell it what to do. So anything Gralde can do is by means of various plugins providing us with various built-in tasks. Some tasks are independent, some are dependent on other tasks. Some tasks can be specialised and some extended. One problem that this creates is that all plugins and all plugin versions have to be specified at the beginning of each `gradle.build` or `gradle.build.kts` file.
 
 ## Creating Gradle verison of Maven BOM
 
-Top create Gradle version of Maven BOM we have to create project that is going to hold gradle build script (`build.gradle.kts`) responsible for genereting such a file. In this example project is called [MavenBOMPublisher](https://github.com/cubeprogramming/GradleBOM/tree/master/MavenBOMPublisher) and contains following important files:
+Top create Gradle version of Maven BOM we have to create project that is going to hold Gradle build script (`build.gradle.kts`) responsible for generating such a file. In this example project is called [MavenBOMPublisher](https://github.com/cubeprogramming/GradleBOM/tree/master/MavenBOMPublisher) and contains following important files:
 
 - `build.gradle.kts` - build script that generates Maven like BOM file and publishes it to specified Maven compatible repository
 - `gradle.properties` - contains version numbers for all dependencies in form of properties
@@ -181,3 +181,16 @@ dependencies {
 ```
 
 We can still overide versions of referred depenencies or introduce new one if we need to to so.
+
+## Centralising management of: plugins, plugin versions and dependency repository references
+
+Unfortunately we can not use Maven BOM generation process in Gradle to generate: `<repositories>`, `<plugins>` or `<pluginManagement>` sections as we can do in Maven BOM. Workaround to this problem is to deploy repository references and list of plugins with corresponding versions to centralised place accessible to all project that are going to reference them. In this example this files are residing in the same place as Maven BOM generation project. This files are:
+
+- [plugins.properties](https://github.com/cubeprogramming/GradleBOM/blob/master/MavenBOMPublisher/plugins.properties) - file containing list of plugins and corresponding versions
+- [repositoryList](https://github.com/cubeprogramming/GradleBOM/blob/master/MavenBOMPublisher/repositoryList) file contains the list of common repositories that are going to be used to download plugins and dependencies.
+
+### Creating common `settings.gradle.kts` file
+
+To load list of common plugins, plugin versions, repository list and common configurations we have to create `settings.gradle.kts` file that all projects will copy. Content of this file can be found in: [Maven BOM consuming project example](https://github.com/cubeprogramming/GradleBOM/blob/master/BOMConsumingProject/settings.gradle.kts)
+
+Now implementation of [build.gradle.kts](https://github.com/cubeprogramming/GradleBOM/blob/master/BOMConsumingProject/settings.gradle.kts) in each Maven BOM consuming project can look much simpler
