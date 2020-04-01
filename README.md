@@ -1,6 +1,6 @@
 # Gradle Kotlin DSL Maven like BOM creation example
 
-This example explains how to build Maven like "[Bill Of Material](Creating Maven like BOM in Gradle Kotlin DSL with full versioning support for plugins and dependencies)" or BOM for short.
+This example explains how to build Maven like "[Bill Of Material](https://blog.sysco.no/ci-cd/building-gradle-bom/)" or BOM for short.
 
 Reason to create Maven like BOM is to have centralised place where we can manage all plugin and dependency versions as well as create some common configuration that all of the project importing this BOM, can share.
 
