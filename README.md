@@ -8,7 +8,7 @@ Unlike Maven where build script is composed as a set of declarative statements, 
 
 ## Creating Gradle verison of Maven BOM
 
-Top create Gradle version of Maven BOM we have to create project that is going to hold Gradle build script (`build.gradle.kts`) responsible for generating such a file. In this example project is called [MavenBOMPublisher](https://github.com/cubeprogramming/GradleBOM/tree/master/MavenBOMPublisher) and contains following important files:
+To create Gradle version of Maven BOM we have to create project that is going to hold Gradle build script (`build.gradle.kts`) responsible for generating such a file. In this example project is called [MavenBOMPublisher](https://github.com/cubeprogramming/GradleBOM/tree/master/MavenBOMPublisher) and contains following important files:
 
 - `build.gradle.kts` - build script that generates Maven like BOM file and publishes it to specified Maven compatible repository
 - `gradle.properties` - contains version numbers for all dependencies in form of properties
